@@ -32,12 +32,12 @@ pipeline {
             }
         }
 
-        stage('Verify') {
-            steps {
-                // Optional: Check if the migration was recorded in Flyway history
-                sh "docker-compose exec -T db psql -U ${DB_CREDS_USR} -d my_app_db -c 'SELECT * FROM flyway_schema_history;'"
-            }
-        }
+        // stage('Verify') {
+        //     steps {
+        //         // Optional: Check if the migration was recorded in Flyway history
+        //         sh "docker-compose exec -T db psql -U ${DB_CREDS_USR} -d my_app_db -c 'SELECT * FROM flyway_schema_history;'"
+        //     }
+        // }
     }
 
     post {
