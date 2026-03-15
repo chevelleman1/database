@@ -13,12 +13,13 @@ services:
 
   flyway:
     image: flyway/flyway:10-alpine
-    environment:
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      
-    # We use the service name 'db' as the hostname in the URL
-    command: -url=jdbc:postgresql://db:5432/my_app_db -user=POSTGRES_USER -password=POSTGRES_PASSWORD -connectRetries=60 migrate
+
+    command: >
+      -url=jdbc:postgresql://db:5432/main_db 
+      -user=${POSTGRES_USER} 
+      -password=${POSTGRES_PASSWORD} 
+      -connectRetries=60 
+      migrate
     volumes:
       - ./migrations:/flyway/sql
     depends_on:
