@@ -21,7 +21,7 @@ services:
       -connectRetries=60 
       migrate
     volumes:
-      - ./migrations:/flyway/sql
+      - ${WORKSPACE}/migrations:/flyway/sql
     depends_on:
       - db
 
