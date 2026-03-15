@@ -1,0 +1,4 @@
+# Ignore the actual database files created by Docker
+pg_data/
+# Ignore OS-specific files
+.DS_Store
