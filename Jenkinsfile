@@ -22,11 +22,11 @@ pipeline {
                     sh """
                     POSTGRES_USER=${DB_CREDS_USR} \
                     POSTGRES_PASSWORD=${DB_CREDS_PSW} \
-                    docker-compose up -d db
+                    docker compose up -d db
                     
                     POSTGRES_USER=${DB_CREDS_USR} \
                     POSTGRES_PASSWORD=${DB_CREDS_PSW} \
-                    docker-compose up flyway
+                    docker compose up flyway
                     """
                 }
             }
