@@ -22,7 +22,7 @@ pipeline {
                     sh """
                     POSTGRES_USER=${DB_CREDS_USR} \
                     POSTGRES_PASSWORD=${DB_CREDS_PSW} \
-                    docker compose up -d db
+                    docker compose up  db
                     
                     POSTGRES_USER=${DB_CREDS_USR} \
                     POSTGRES_PASSWORD=${DB_CREDS_PSW} \
