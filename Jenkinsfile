@@ -6,7 +6,7 @@ pipeline {
         DB_CREDS = credentials('postgres-db-credentials') 
     }
 
-    stages {1
+    stages {
         stage('Checkout') {
             steps {
                 // Pull your migrations folder and docker-compose.yml
