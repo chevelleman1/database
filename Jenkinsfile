@@ -6,7 +6,7 @@ pipeline {
         DB_CREDS = credentials('postgres-db-credentials') 
     }
 
-    stages {
+    stages {1
         stage('Checkout') {
             steps {
                 // Pull your migrations folder and docker-compose.yml
@@ -22,11 +22,11 @@ pipeline {
                     sh """
                     POSTGRES_USER=${DB_CREDS_USR} \
                     POSTGRES_PASSWORD=${DB_CREDS_PSW} \
-                    docker compose up  db
+                    docker compose up -d db
                     
                     POSTGRES_USER=${DB_CREDS_USR} \
                     POSTGRES_PASSWORD=${DB_CREDS_PSW} \
-                    docker compose up flyway
+                    docker compose up -d flyway
                     """
                 }
             }
@@ -43,7 +43,7 @@ pipeline {
     post {
         always {
             // Clean up the Flyway container but keep the DB running
-            sh "docker compose rm flyway"
+            sh "docker compose -d rm flyway"
         }
         failure {
             echo "Migration failed! Check SQL syntax in your V__ files."
