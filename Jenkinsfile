@@ -26,7 +26,7 @@ pipeline {
                     
                     POSTGRES_USER=${DB_CREDS_USR} \
                     POSTGRES_PASSWORD=${DB_CREDS_PSW} \
-                    docker compose up -d flyway
+                    docker compose up flyway
                     """
                 }
             }
@@ -43,7 +43,12 @@ pipeline {
     post {
         always {
             // Clean up the Flyway container but keep the DB running
-            sh "docker compose rm -f flyway"
+        sh """
+            POSTGRES_USER=${DB_CREDS_USR} \
+            POSTGRES_PASSWORD=${DB_CREDS_PSW} \
+            docker compose rm -f flyway
+        """
+            
         }
         failure {
             echo "Migration failed! Check SQL syntax in your V__ files."
