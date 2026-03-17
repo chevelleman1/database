@@ -43,7 +43,7 @@ pipeline {
     post {
         always {
             // Clean up the Flyway container but keep the DB running
-            sh "docker-compose rm -f flyway"
+            sh "docker compose rm -f flyway"
         }
         failure {
             echo "Migration failed! Check SQL syntax in your V__ files."
