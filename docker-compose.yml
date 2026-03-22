@@ -10,6 +10,8 @@ services:
       - "5432:5432"
     volumes:
       - pg_data:/var/lib/postgresql/data
+    networks:
+      - dock_network
 
   flyway:
     image: flyway/flyway:10-alpine
@@ -24,6 +26,11 @@ services:
       - ${WORKSPACE}/migrations:/flyway/sql
     depends_on:
       - db
+        networks:
+      - dock_network
 
 volumes:
   pg_data:
+networks:
+  dock_network:
+    name: dock_network # Forces a specific name for your Jenkinsfile to use
