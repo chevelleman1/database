@@ -33,5 +33,5 @@ volumes:
   pg_data:
 networks:
   dock_network:
-    name: dock_network # Forces a specific name for your Jenkinsfile to use
-    driver: bridge
+    external: true
+
